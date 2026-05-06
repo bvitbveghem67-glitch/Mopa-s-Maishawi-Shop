@@ -197,9 +197,9 @@ const RESTAURANTS = [
     location: { en: "Salim Street", ku: "شەقامی سەلیم", ar: "شارع سالم" },
     category: 'Fried Chicken',
     rating: 4.5,
-    price: '13,500 - 82,500 IQD',
+    price: '3,250 - 81,000 IQD',
     time: { en: '25-40 MIN', ku: '٢٥-٤٠ خولەک', ar: '٢٥-٤٠ دقيقة' },
-    image: '...', 
+    image: 'https://1000logos.net/wp-content/uploads/2017/03/Kfc_logo.png', 
     tagline: { en: "Finger Lickin' Good", ku: "پەنجەکانتی لەگەڵ دەخۆیت", ar: "خلطة سرية، طعم رائع" },
     sig: { en: 'Mighty Bucket', ku: 'مایتی سەتڵ', ar: 'مايتي بوكيت' },
     menu: [
@@ -207,15 +207,17 @@ const RESTAURANTS = [
         category: { en: 'INDIVIDUAL MEALS', ku: 'ژەمە تاکەکەسییەکان', ar: 'وجبات فردية' }, 
         items: [
           { name: { en: 'Zinger Burger Meal', ku: 'ژەمی زینگەر بەرگر', ar: 'وجبة زنجر برجر' }, desc: { en: 'Spicy chicken fillet, fries, and a drink.', ku: 'فیلیتەی مریشکی توون، پەتاتە، و خواردنەوەیەکی سارد.', ar: 'فيليه دجاج حار، بطاطس، ومشروب.' }, price: '17,250 IQD' },
-          { name: { en: 'Twister Sandwich', ku: 'تویستەر سەندویچ', ar: 'تويستر ساندويتش' }, desc: { en: '2 crispy strips, lettuce, tomatoes, and pepper mayo.', ku: '٢ پارچە سترێپس، کاهوو، تەماتە، و مایۆنیزی بیبەر.', ar: '٢ ستربس، خس، طماطم، ومايونيز فلفل.' }, price: '11,250 IQD' },
-          { name: { en: 'Rizo Bowl', ku: 'ڕیزۆ', ar: 'ريزو' }, desc: { en: 'Spiced rice topped with crispy chicken pieces and sauce.', ku: 'برنجی بەهاراتکراو بە پارچە مریشکی کریسپی.', ar: 'أرز متبل مع قطع دجاج مقرمشة وصوص.' }, price: '12,000 IQD' }
+          { name: { en: 'Twister Sandwich', ku: 'تویستەر سەندویچ', ar: 'تويستر ساندويتش' }, desc: { en: 'Tortilla bread, 2 crispy strips, and mayonnaise.', ku: 'نانى تۆرتیلا، ٢ پارچە سترێپس، و مایۆنیز.', ar: 'خبز تورنيلا، ٢ ستربس، ومايونيز.' }, price: '5,000 IQD' },
+          { name: { en: 'Snacker Sandwich', ku: 'سناکار سەندویچ', ar: 'سناكر ساندويتش' }, desc: { en: '1 chicken strip with spicy mayonnaise.', ku: '١ پارچە سترێپس لەگەڵ مایۆنیزی توون.', ar: '١ ستربس مع مايونيز حار.' }, price: '3,250 IQD' },
+          { name: { en: 'Strips and Rice Meal', ku: 'ژەمی سترێپس و برنج', ar: 'وجبة ستربس وأرز' }, desc: { en: 'Rice with 3 chicken pieces and a drink.', ku: 'برنج لەگەڵ ٣ پارچە مریشک و خواردنەوەیەکی سارد.', ar: 'أرز مع ٣ قطع دجاج ومشروب.' }, price: '10,500 IQD' }
         ]
       },
       { 
         category: { en: 'BUCKETS', ku: 'سەتڵەکان', ar: 'البوكت' }, 
         items: [
-          { name: { en: '9 Pcs Super Bucket', ku: 'سەتڵێ ٩ پارچەیی', ar: 'بوكيت ٩ قطع' }, desc: { en: '9 pieces of chicken, large fries, 3 buns, and 1.25L drink.', ku: '٩ پارچە مریشک، پەتاتەی گەورە، ٣ سەموون، و خواردنەوە.', ar: '٩ قطع دجاج، بطاطس عائلية، ٣ خبز، ومشروب.' }, price: '42,000 IQD' },
-          { name: { en: '15 Pcs Mighty Bucket', ku: 'سەتڵێ ١٥ پارچەیی', ar: 'بوكيت ١٥ قطعة' }, desc: { en: '15 pieces of chicken, 5 strips, family fries, and drink.', ku: '١٥ پارچە مریشک، ٥ سترێپس، پەتاتەی عائەلی، و خواردنەوە.', ar: '١٥ قطعة دجاج، ٥ ستربس، بطاطس عائلية، ومشروب.' }, price: '66,750 IQD' }
+          { name: { en: 'Super Bucket (9 Pcs)', ku: 'سەتڵێ سوپەر ٩ پارچەیی', ar: 'سوبر بوكيت ٩ قطع' }, desc: { en: '9 chicken pieces, 3 buns, family fries, coleslaw, and 1.75L drink.', ku: '٩ پارچە مریشک، ٣ سەموون، پەتاتە، زەڵاتە، و خواردنەوە.', ar: '٩ قطع دجاج، ٣ خبز، بطاطس عائلية، كولسلو، ومشروب.' }, price: '36,000 IQD' },
+          { name: { en: 'Mighty Bucket (15 Pcs)', ku: 'سەتڵێ مایتی ١٥ پارچەیی', ar: 'مايتي بوكيت ١٥ قطعة' }, desc: { en: '15 chicken pieces, 5 strips, 5 buns, family fries, coleslaw, and 1.75L drink.', ku: '١٥ پارچە مریشک، ٥ سترێپس، ٥ سەموون، پەتاتە، و خواردنەوە.', ar: '١٥ قطعة دجاج، ٥ ستربس، ٥ خبز، بطاطس عائلية، ومشروب.' }, price: '61,000 IQD' },
+          { name: { en: 'Saver Bucket (21 Pieces)', ku: 'سەتڵێ سەیڤەر ٢١ پارچەیی', ar: 'سيفر بوكيت ٢١ قطعة' }, desc: { en: '21 pieces of chicken and 7 buns.', ku: '٢١ پارچە مریشک و ٧ سەموون.', ar: '٢١ قطعة دجاج و ٧ خبز.' }, price: '55,000 IQD' }
         ]
       }
     ]
@@ -226,9 +228,9 @@ const RESTAURANTS = [
     location: { en: "Majidi Mall", ku: "مەجیدی مۆڵ", ar: "مجيدي مول" },
     category: 'Burgers',
     rating: 4.6,
-    price: '12,000 - 52,500 IQD',
+    price: '9,750 - 52,500 IQD',
     time: { en: '30-45 MIN', ku: '٣٠-٤٥ خولەک', ar: '٣٠-٤٥ دقيقة' },
-    image: '...', 
+    image: 'https://assets.stickpng.com/images/614479365953a50004ee16c7.png', 
     tagline: { en: "Go Big or Go Home", ku: "گەورە بژی یان بڕۆ ماڵەوە", ar: "عِشها كبيرة" },
     sig: { en: 'Super Star Burger', ku: 'سوپەر ستار بەرگر', ar: 'سوبر ستار برجر' },
     menu: [
@@ -236,13 +238,14 @@ const RESTAURANTS = [
         category: { en: 'CHARGRILLED MEALS', ku: 'ژەمە برژاوەکان', ar: 'وجبات مشوية' }, 
         items: [
           { name: { en: 'Super Star Meal', ku: 'ژەمی سوپەر ستار', ar: 'وجبة سوبر ستار' }, desc: { en: 'Two beef patties, American cheese, lettuce, and tomato.', ku: 'دوو پارچە گۆشت، پەنیری ئەمریکی، کاهوو، و تەماتە.', ar: 'قطعتين لحم، جبنة أمريكية، خس، وطماطم.' }, price: '18,750 IQD' },
-          { name: { en: 'Mushroom N’ Swiss', ku: 'مەشروم ئاند سویس', ar: 'مشروم آند سويس' }, desc: { en: 'Beef patty topped with mushroom sauce and Swiss cheese.', ku: 'پارچە گۆشت بە سۆسی قارچک و پەنیری سویسری.', ar: 'لحم مغطى بصوص الفطر والجبنة السويسرية.' }, price: '19,500 IQD' },
-          { name: { en: 'Big Deluxe Burger', ku: 'بیگ دیلۆکس', ar: 'بيج ديلوكس' }, desc: { en: 'Chargrilled beef, melted cheese, and fresh vegetables.', ku: 'گۆشتی برژاو، پەنیر، و سەوزەی تازە.', ar: 'لحم مشوي، جبنة، وخضروات طازجة.' }, price: '15,750 IQD' }
+          { name: { en: 'Famous Star Burger', ku: 'فەیمس ستار بەرگر', ar: 'فيمس ستار برجر' }, desc: { en: 'All-beef patty, cheese, mayo, ketchup, and pickles.', ku: 'پارچە گۆشت، پەنیر، مایۆنیز، کێچاپ، و خەیارشور.', ar: 'قطعة لحم، جبنة، مايونيز، كاتشب، ومخلل.' }, price: '15,750 IQD' },
+          { name: { en: 'Mushroom N’ Swiss', ku: 'مەشروم ئاند سویس', ar: 'مشروم آند سويس' }, desc: { en: 'Beef patty topped with mushroom sauce and Swiss cheese.', ku: 'پارچە گۆشت بە سۆسی قارچک و پەنیری سویسری.', ar: 'لحم مغطى بصوص الفطر والجبنة السويسرية.' }, price: '19,500 IQD' }
         ]
       },
       {
-        category: { en: 'SIDES', ku: 'تەنیشتەکان', ar: 'الأصناف الجانبية' },
+        category: { en: 'CHICKEN & SIDES', ku: 'مریشک و تەنیشتەکان', ar: 'دجاج وأصناف جانبية' },
         items: [
+          { name: { en: 'Hand-Breaded Tenders (3 Pcs)', ku: 'سترێپس ٣ پارچەیی', ar: 'ستربس ٣ قطع' }, desc: { en: '3 pieces of hand-breaded chicken tenders.', ku: '٣ پارچە سترێپسی مریشکی دەستکرد.', ar: '٣ قطع ستربس دجاج.' }, price: '12,750 IQD' },
           { name: { en: 'Loaded Fries', ku: 'پەتاتەی لۆدێد', ar: 'لودد فرايز' }, desc: { en: 'Fries topped with cheese sauce and jalapenos.', ku: 'پەتاتە بە سۆسی پەنیر و هالاپینۆ.', ar: 'بطاطس مع صوص الجبنة وهالبينو.' }, price: '9,750 IQD' }
         ]
       }
@@ -256,7 +259,7 @@ const RESTAURANTS = [
     rating: 4.4,
     price: '10,500 - 45,000 IQD',
     time: { en: '30-45 MIN', ku: '٣٠-٤٥ خولەک', ar: '٣٠-٤٥ دقيقة' },
-    image: '...',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Burger_King_logo_%281999%E2%80%932020%29.svg/960px-Burger_King_logo_%281999%E2%80%932020%29.svg.png',
     tagline: { en: "Taste is King", ku: "تام پادشایە", ar: "الطعم هو الملك" },
     sig: { en: 'Whopper Meal', ku: 'ژەمی واپەر', ar: 'وجبة وابر' },
     menu: [
@@ -264,19 +267,22 @@ const RESTAURANTS = [
         category: { en: 'FLAME GRILLED', ku: 'برژاوی سەر ئاگر', ar: 'مشوي على اللهب' }, 
         items: [
           { name: { en: 'Whopper Meal', ku: 'ژەمی واپەر', ar: 'وجبة وابر' }, desc: { en: 'Flame-grilled beef, tomatoes, lettuce, and pickles.', ku: 'گۆشتی برژاو، تەماتە، کاهوو، و خەیارشور.', ar: 'لحم مشوي، طماطم، خس، ومخلل.' }, price: '18,000 IQD' },
-          { name: { en: 'Big King Beef', ku: 'بیگ کینگ گۆشت', ar: 'بيج كينج لحم' }, desc: { en: 'Double beef, special sauce, and cheddar cheese.', ku: 'دوو پارچە گۆشت، سۆسی تایبەت، و پەنیری چێدەر.', ar: 'قطعتين لحم، صوص خاص، وجبنة شيدر.' }, price: '15,750 IQD' },
-          { name: { en: 'Steakhouse Burger', ku: 'ستەیک هاوس بەرگر', ar: 'ستيك هاوس برجر' }, desc: { en: 'Beef patty, bacon, crispy onions, and BBQ sauce.', ku: 'پارچە گۆشت، بەیکۆن، پیاز، و سۆسی بی بی کیو.', ar: 'لحم، بيكون، بصل مقرمش، وصوص باربيكيو.' }, price: '20,250 IQD' }
+          { name: { en: 'Steakhouse Burger', ku: 'ستەیک هاوس بەرگر', ar: 'ستيك هاوس برجر' }, desc: { en: 'Beef patty, bacon, crispy onions, and BBQ sauce.', ku: 'پارچە گۆشت، بەیکۆن، پیاز، و سۆسی بی بی کیو.', ar: 'لحم، بيكون، بصل مقرمش، وصوص باربيكيو.' }, price: '20,250 IQD' },
+          { name: { en: 'Bacon King Double', ku: 'بەکۆن کینگ دووانە', ar: 'بيكون كينج دبل' }, desc: { en: 'Two flame-grilled beef patties with crispy bacon.', ku: 'دوو پارچە گۆشتی برژاو لەگەڵ بەیکۆنی کریسپی.', ar: 'قطعتين لحم مشوي مع بيكون مقرمش.' }, price: '22,500 IQD' }
         ]
       },
       {
         category: { en: 'CHICKEN', ku: 'مریشک', ar: 'دجاج' },
         items: [
-          { name: { en: 'Chicken Royale', ku: 'چیکن ڕۆیاڵ', ar: 'تشيكن رويال' }, desc: { en: 'Breaded chicken fillet with lettuce and mayo.', ku: 'فیلیتەی مریشک لەگەڵ کاهوو و مایۆنیز.', ar: 'فيليه دجاج مع خس ومايونيز.' }, price: '13,500 IQD' }
+          { name: { en: 'Chicken Royale', ku: 'چیکن ڕۆیاڵ', ar: 'تشيكن رويال' }, desc: { en: 'Breaded chicken fillet with lettuce and mayo.', ku: 'فیلیتەی مریشک لەگەڵ کاهوو و مایۆنیز.', ar: 'فيليه دجاج مع خس ومايونيز.' }, price: '13,500 IQD' },
+          { name: { en: 'Chicken Nuggets (9 Pcs)', ku: 'ناگێتس ٩ پارچەیی', ar: 'ناجتس ٩ قطع' }, desc: { en: '9 pieces of crispy chicken nuggets.', ku: '٩ پارچە ناگێتسی مریشکی کریسپی.', ar: '٩ قطع ناجتس دجاج.' }, price: '10,500 IQD' }
         ]
       }
     ]
   }
-];export default function App() {
+];
+
+export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
