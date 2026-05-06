@@ -211,7 +211,7 @@ const RESTAURANTS = [
   {
     id: 1,
     name: { en: "MOPA'S MAISHAWI", ku: "مۆپا مەیشاوی", ar: "موبا ميشاوي" },
-    location: { en: "Suly Park District", ku: "گەڕەکی پارکی سلێمانی", ar: "منطقة بارك السليمانية" },
+    location: { en: "Home Cooked", ku: "گەڕەکی پارکی سلێمانی", ar: "منطقة بارك السليمانية" },
     category: 'steak',
     rating: 4.9,
     price: '$65 - $180',
@@ -243,76 +243,11 @@ const RESTAURANTS = [
       ]}
     ]
   },
+  
   {
     id: 2,
-    name: { en: "AZMAR PEAK", ku: "لووتکەی ئەزمەڕ", ar: "قمة أزمر" },
-    location: { en: "Azmar Heights", ku: "بەرزاییەکانی ئەزمەڕ", ar: "مرتفعات أزمر" },
-    category: 'french',
-    rating: 4.8,
-    price: '$45 - $120',
-    time: { en: '40-50 MIN', ku: '٤٠-٥٠ خولەک', ar: '٤٠-٥٠ دقيقة' },
-    image: 'https://images.unsplash.com/photo-1550966841-3ee3ad15f0d5?q=80&w=2070&auto=format&fit=crop',
-    tagline: { en: 'Crest-Side Fine Dining', ku: 'نانخوارنی نایاب لە لوتکە', ar: 'عشاء فاخر على منحدر الجبل' },
-    sig: { en: 'Lamb Shank Confit', ku: 'کۆنفێتی قاچی بەرخ', ar: 'موزات الغنم المحمرة' },
-    menu: [
-      { category: { en: 'HORS D\'OEUVRES', ku: 'کەمەخۆراکەکان', ar: 'المشهیات' }, items: [
-        { name: { en: 'Escargot de Azmar', ku: 'ئێسکارگۆتی ئەزمەڕ', ar: 'حلزون أزمر' }, desc: { en: 'Garlic butter, puff pastry, mountain herbs.', ku: 'کەرەی سیر، هەویری پف، گیاکێوییەکانی شاخ.', ar: 'زبدة الثوم، باستري، أعشاب جبلية.' }, price: '$24' },
-        { name: { en: 'Foie Gras Torchon', ku: 'فوا گرا تۆرچۆن', ar: 'فوا غرا تورشون' }, desc: { en: 'Fig compote, toasted brioche.', ku: 'کۆمپۆتی هەنجیر، بریۆشی برژێنراو.', ar: 'كومبوت التين، بريوش محمص.' }, price: '$32' }
-      ]},
-      { category: { en: 'PLATS PRINCIPAUX', ku: 'خواردنە سەرەکییەکان', ar: 'الأطباق الرئيسية' }, items: [
-        { name: { en: 'Lamb Shank Confit', ku: 'کۆنفێتی قاچی بەرخ', ar: 'موزات الغنم المحمرة' }, desc: { en: 'Slow-cooked for 12 hours, red wine reduction.', ku: '١٢ خولەک بە هێواشی کوڵاوە.', ar: 'مطبوخ ببطء لمدة ١٢ ساعة.' }, price: '$48' },
-        { name: { en: 'Duck à l\'Orange', ku: 'مراوی بە پرتەقاڵ', ar: 'بط بالبرتقال' }, desc: { en: 'Zesty citrus glaze, parsnip purée.', ku: 'گەشەی مزرەمەنی، پیورێی پاشنیپ.', ar: 'طبقة حمضية، بيوريه الجزر الأبيض.' }, price: '$52' }
-      ]}
-    ]
-  },
-  {
-    id: 3,
-    name: { en: "SAWRA GRID", ku: "تۆڕی سەورە", ar: "شبكة ثورة" },
-    location: { en: "Salim Street", ku: "شەقامی سەلیم", ar: "شارع سالم" },
-    category: 'sushi',
-    rating: 5.0,
-    price: '$80 - $250',
-    time: { en: '20-30 MIN', ku: '٢٠-٣٠ خولەک', ar: '٢٠-٣٠ دقيقة' },
-    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070&auto=format&fit=crop',
-    tagline: { en: 'Imported Raw Reserve', ku: 'کۆگای خاوە هاوردەکراوەکان', ar: 'احتياطي المواد الخام المستوردة' },
-    sig: { en: 'Bluefin O-Toro', ku: 'بلوفین ئۆ-تۆرۆ', ar: 'بلوفين أو تورو' },
-    menu: [
-      { category: { en: 'ZEN STARTERS', ku: 'دەستپێکە ئارامەکان', ar: 'مقبلات زين' }, items: [
-        { name: { en: 'Tuna Tataki', ku: 'تونا تاتاکی', ar: 'تونا تاتاكي' }, desc: { en: 'Seared bluefin, ponzu, crispy garlic.', ku: 'بلوفینی برژێنراو، پۆنزو، سیری کریسپی.', ar: 'بلوفين محمر، بونزو، ثوم مقرمش.' }, price: '$28' },
-        { name: { en: 'Golden Enoki', ku: 'گۆڵدن ئێنۆکی', ar: 'الفطر الذهبي' }, desc: { en: 'Tempura mushrooms, truffle aioli.', ku: 'قارچکی تەمپورا، ترۆفڵ ئایۆلی.', ar: 'فطر تيمبورا، أيولي الكمأة.' }, price: '$16' }
-      ]},
-      { category: { en: 'THE RESERVE BOX', ku: 'سندوقی تایبەت', ar: 'صندوق الاحتياط' }, items: [
-        { name: { en: 'O-Toro Flight', ku: 'گەشتی ئۆ-تۆرۆ', ar: 'فلايت أو تورو' }, desc: { en: 'Three grades of bluefin fatty tuna.', ku: 'سێ پلەی ماسی تونا.', ar: 'ثلاث درجات من تونا البلوفين الدهنية.' }, price: '$85' },
-        { name: { en: 'Imperial Omakase', ku: 'ئۆماکاسی شاهانە', ar: 'أوماكاسي إمبراطوري' }, desc: { en: '12-piece chef\'s selection of the day\'s best catch.', ku: '١٢ پارچە لە باشترین هەڵبژاردەی شێف بۆ ئەمڕۆ.', ar: '١٢ قطعة من اختيار الشيف لأفضل صيد اليوم.' }, price: '$120' }
-      ]}
-    ]
-  },
-  {
-    id: 4,
-    name: { en: "GOIZHA CELLAR", ku: "سێڵەری گۆیژە", ar: "قبو كويجة" },
-    location: { en: "Sarchinar Road", ku: "شەقامی سەرچنار", ar: "طريق سرجنار" },
-    category: 'fusion',
-    rating: 4.7,
-    price: '$35 - $90',
-    time: { en: '30-40 MIN', ku: '٣٠-٤٠ خولەک', ar: '٣٠-٤٠ دقيقة' },
-    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2074&auto=format&fit=crop',
-    tagline: { en: 'Modern Kurdish Fusion', ku: 'فیوژنی کوردی سەردەمیانە', ar: 'فيوجن كردي حديث' },
-    sig: { en: 'Wagyu Bone Marrow', ku: 'مۆخی واگیۆ', ar: 'نخاع عظم واغيو' },
-    menu: [
-      { category: { en: 'SMALL PLINTHS', ku: 'پلینتە بچووکەکان', ar: 'منصات صغيرة' }, items: [
-        { name: { en: 'Kurdish Arancini', ku: 'ئارانچینی کوردی', ar: 'أرانتشيني كردي' }, desc: { en: 'Saffron rice, braised lamb, spiced yogurt.', ku: 'برنجی سەفران، بەرخی برژێنراو، ماستی بەهاراتی پڕ.', ar: 'أرز بالزعفران، لحم ضأن مطهو ببطء، زبادي متبل.' }, price: '$14' },
-        { name: { en: 'Goizha Hummus', ku: 'حوموسی گۆیژە', ar: 'حمص كويجة' }, desc: { en: 'Wagyu fat infusion, toasted pine nuts.', ku: 'تێکەڵەی چەوری واگیۆ، سنەوبەری برژێنراو.', ar: 'منقوع دهن الواغيو، صنوبر محمص.' }, price: '$12' }
-      ]},
-      { category: { en: 'SIGNATURES', ku: 'نیشانەکان', ar: 'التواقيع' }, items: [
-        { name: { en: 'Wagyu Bone Marrow', ku: 'مۆخی واگیۆ', ar: 'نخاع عظم واغيو' }, desc: { en: 'Herb crust, lemon zest, mountain salt.', ku: 'تێکەڵەی گیا، توێکڵی لیمۆ، خوێی شاخ.', ar: 'قشرة الأعشاب، قشر الليمون، ملح جبلي.' }, price: '$36' },
-        { name: { en: 'Neo-Dolma', ku: 'نیۆ-دۆڵمە', ar: 'نيو دولمة' }, desc: { en: 'Deconstructed traditional flavors, modern plating.', ku: 'تامە ڕەسەنەکان بە شێوازێکی زانستی و نوێ.', ar: 'نكهات تقليدية مفككة، تقديم عصري.' }, price: '$28' }
-      ]}
-    ]
-  },
-  {
-    id: 5,
     name: { en: "KFC", ku: "کەی ئێف سی", ar: "كي إف سي" },
-    location: { en: "Salim Street", ku: "شەقامی سەلیم", ar: "شارع سالم" },
+    location: { en: "Majidi Mall", ku: "شەقامی سەلیم", ar: "شارع سالم" },
     category: 'fried_chicken',
     rating: 4.5,
     price: '3,250 - 81,000 IQD',
@@ -341,7 +276,7 @@ const RESTAURANTS = [
     ]
   },
   {
-    id: 6,
+    id: 3,
     name: { en: "HARDEE'S", ku: "هاردیز", ar: "هارديز" },
     location: { en: "Majidi Mall", ku: "مەجیدی مۆڵ", ar: "مجيدي مول" },
     category: 'burgers',
@@ -370,9 +305,9 @@ const RESTAURANTS = [
     ]
   },
   {
-    id: 7,
+    id: 4,
     name: { en: "BURGER KING", ku: "بەرگر کینگ", ar: "برجر كينج" },
-    location: { en: "Bakhtiary", ku: "بەختیاری", ar: "بختياري" },
+    location: { en: "Majidi Mall", ku: "بەختیاری", ar: "بختياري" },
     category: 'burgers',
     rating: 4.4,
     price: '10,500 - 45,000 IQD',
