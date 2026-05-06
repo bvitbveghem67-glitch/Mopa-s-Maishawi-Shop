@@ -11,9 +11,21 @@ import {
   SlidersHorizontal,
   Flame,
   Utensils,
-  ArrowRight
+  ArrowRight,
+  Trash2,
+  Minus,
+  Plus,
+  CheckCircle2
 } from 'lucide-react';
-import { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
+
+type CartItem = {
+  id: string;
+  name: string;
+  price: string;
+  quantity: number;
+  restoName: string;
+};
 
 const CATEGORIES = [
   { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }, icon: Flame },
@@ -56,7 +68,16 @@ const UI_TEXT: Record<string, any> = {
     returnToGrid: "RETURN TO GRID",
     endOfCatalogue: "End of Catalogue",
     matrix: "THE MATRIX",
-    rating: "Rating"
+    rating: "Rating",
+    yourBag: "YOUR BAG",
+    subtotal: "SUBTOTAL",
+    checkout: "INITIATE DELIVERY",
+    deliveryLocation: "DELIVERY LOCATION (NEIGHBORHOOD / HOUSE)",
+    sending: "TRANSMITTING...",
+    orderConfirmed: "ORDER TRANSMITTED",
+    orderConfirmedDesc: "Your seared reserves are being prepared. Payment in person upon arrival.",
+    emptyBag: "Your bag is empty.",
+    phoneNumber: "PHONE NUMBER"
   },
   ku: {
     brand: "مۆپا مەیشاوی",
@@ -91,7 +112,16 @@ const UI_TEXT: Record<string, any> = {
     returnToGrid: "گەڕانەوە بۆ تۆڕەکە",
     endOfCatalogue: "کۆتایی کەتەلۆگ",
     matrix: "ماتریکس",
-    rating: "پلەبەندی"
+    rating: "پلەبەندی",
+    yourBag: "سەبەتەکەت",
+    subtotal: "کۆتایی بڕ",
+    checkout: "دەستپێکردنی ناردن",
+    deliveryLocation: "شوێنی ناردن (گەڕەک / ژمارەی خانوو)",
+    sending: "دەنێردرێت...",
+    orderConfirmed: "داواکارییەکەت نێردرا",
+    orderConfirmedDesc: "خواردنەکانت خەریکە ئامادە دەکرێن. پارەدان لەکاتی گەیشتن دەبێت.",
+    emptyBag: "سەبەتەکەت خاڵییە.",
+    phoneNumber: "ژمارەی مۆبایل"
   },
   ar: {
     brand: "موبا ميشاوي",
@@ -126,7 +156,16 @@ const UI_TEXT: Record<string, any> = {
     returnToGrid: "العودة إلى الشبكة",
     endOfCatalogue: "نهاية الكتالوج",
     matrix: "الماتريكس",
-    rating: "تقييم"
+    rating: "تقييم",
+    yourBag: "حقيبتك",
+    subtotal: "المجموع الفرعي",
+    checkout: "بدء التوصيل",
+    deliveryLocation: "موقع التوصيل (الحي / المنزل)",
+    sending: "جارٍ الإرسال...",
+    orderConfirmed: "تم إرسال الطلب",
+    orderConfirmedDesc: "يتم تحضير وجباتك الآن. الدفع نقداً عند الاستلام.",
+    emptyBag: "حقيبتك فارغة.",
+    phoneNumber: "رقم الهاتف"
   }
 };
 
@@ -249,6 +288,90 @@ export default function App() {
   const [priceFilter, setPriceFilter] = useState('all');
   const [selectedRestaurant, setSelectedRestaurant] = useState<any>(null);
   const [lang, setLang] = useState<'en' | 'ku' | 'ar'>('en');
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [checkoutLocation, setCheckoutLocation] = useState('');
+  const [checkoutPhone, setCheckoutPhone] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderStatus, setOrderStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const addToCart = (item: any, resto: any) => {
+    const itemId = `${resto.id}-${item.name.en}`;
+    setCart(prev => {
+      const existing = prev.find(i => i.id === itemId);
+      if (existing) {
+        return prev.map(i => i.id === itemId ? { ...i, quantity: i.quantity + 1 } : i);
+      }
+      return [...prev, { 
+        id: itemId, 
+        name: item.name[lang], 
+        price: item.price, 
+        quantity: 1, 
+        restoName: resto.name[lang] 
+      }];
+    });
+    setIsCartOpen(true);
+  };
+
+  const removeFromCart = (itemId: string) => {
+    setCart(prev => prev.filter(i => i.id !== itemId));
+  };
+
+  const updateQuantity = (itemId: string, delta: number) => {
+    setCart(prev => prev.map(i => {
+      if (i.id === itemId) {
+        const newQty = Math.max(1, i.quantity + delta);
+        return { ...i, quantity: newQty };
+      }
+      return i;
+    }));
+  };
+
+  const cartTotal = cart.reduce((acc, item) => {
+    const price = parseInt(item.price.replace('$', '')) || 0;
+    return acc + (price * item.quantity);
+  }, 0);
+
+  const handleCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!checkoutLocation || cart.length === 0) return;
+
+    setIsSubmitting(true);
+    try {
+      // PROXY ORDER DETAILS TO FORMSUBMIT
+      const response = await fetch('https://formsubmit.co/ajax/bvitbveghem67@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: `MAISHAWI_ORDER: ${Math.random().toString(36).substr(2, 5).toUpperCase()}`,
+          order_id: Math.random().toString(36).substr(2, 9).toUpperCase(),
+          items: cart.map(i => `${i.quantity}x ${i.name} (${i.restoName})`).join(', '),
+          total: `$${cartTotal}`,
+          location: checkoutLocation,
+          phone: checkoutPhone,
+          timestamp: new Date().toLocaleString(),
+          _captcha: "false",
+          _template: "table"
+        })
+      });
+      
+      if (response.ok) {
+        setOrderStatus('success');
+        setCart([]);
+        setCheckoutLocation('');
+        setCheckoutPhone('');
+        setTimeout(() => {
+          setOrderStatus('idle');
+          setIsCartOpen(false);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Order failed', error);
+      setOrderStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const t = (key: string) => UI_TEXT[lang][key] || key;
   
@@ -299,9 +422,20 @@ export default function App() {
           <div className="hidden md:flex items-center gap-2 text-gold-muted/40 font-sans text-[10px] tracking-widest uppercase">
             <MapPin className="w-3 h-3" /> {t('location')}
           </div>
-          <button className="relative p-2 text-gold-muted hover:scale-110 transition-transform cursor-pointer">
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 text-gold-muted hover:scale-110 transition-transform cursor-pointer"
+          >
             <ShoppingBag className="w-5 h-5 stroke-1" />
-            <span className="absolute top-0 right-0 w-2 h-2 bg-gold-muted rounded-full" />
+            {cart.length > 0 && (
+              <motion.span 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -top-0 -right-0 bg-white text-charcoal text-[7px] font-bold w-3.5 h-3.5 flex items-center justify-center rounded-full"
+              >
+                {cart.reduce((a, b) => a + b.quantity, 0)}
+              </motion.span>
+            )}
           </button>
           <button onClick={() => setIsMenuOpen(true)} className="p-2 text-gold-muted hover:text-white transition-colors cursor-pointer">
             <MenuIcon className="w-6 h-6 stroke-1" />
@@ -483,7 +617,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] bg-charcoal flex flex-col overflow-y-auto no-scrollbar"
+            className="fixed inset-0 z-[110] bg-charcoal flex flex-col overflow-y-auto no-scrollbar scroll-smooth"
           >
             {/* Header */}
             <div className="relative h-[40vh] shrink-0">
@@ -541,7 +675,12 @@ export default function App() {
                           </div>
                           <div className="flex flex-col items-end gap-2 shrink-0">
                             <span className="font-sans text-xs tracking-widest text-gold-muted">{item.price}</span>
-                            <button className="text-[9px] tracking-[0.3em] uppercase text-white/20 hover:text-gold-muted transition-colors">{t('addToBag')}</button>
+                            <button 
+                              onClick={() => addToCart(item, selectedRestaurant)}
+                              className="text-[9px] tracking-[0.3em] uppercase text-white/20 hover:text-gold-muted transition-colors"
+                            >
+                              {t('addToBag')}
+                            </button>
                           </div>
                         </div>
                       ))}
@@ -694,6 +833,121 @@ export default function App() {
               </div>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Cart Overlay */}
+      <AnimatePresence>
+        {isCartOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCartOpen(false)}
+              className="fixed inset-0 z-[120] bg-charcoal/80 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className={`fixed top-0 ${LANGUAGES[lang].dir === 'rtl' ? 'left-0' : 'right-0'} h-screen w-full md:w-[450px] bg-charcoal border-l border-white/5 z-[130] flex flex-col shadow-2xl p-8 md:p-12 overflow-y-auto no-scrollbar`}
+            >
+              <div className="flex justify-between items-center mb-16">
+                <div className="flex flex-col">
+                  <h2 className="text-3xl font-serif italic text-white tracking-tight">{t('yourBag')}</h2>
+                  <span className="text-[10px] tracking-[0.4em] text-gold-muted opacity-40 uppercase">{cart.reduce((a, b) => a + b.quantity, 0)} Items</span>
+                </div>
+                <button onClick={() => setIsCartOpen(false)} className="p-3 text-gold-muted hover:text-white transition-colors">
+                  <X className="w-6 h-6 stroke-1" />
+                </button>
+              </div>
+
+              {orderStatus === 'success' ? (
+                <div className="flex-1 flex flex-col items-center justify-center text-center space-y-8">
+                   <motion.div 
+                     initial={{ scale: 0 }}
+                     animate={{ scale: 1 }}
+                     className="w-20 h-20 rounded-full border border-gold-muted flex items-center justify-center text-gold-muted"
+                   >
+                     <CheckCircle2 className="w-10 h-10 stroke-1" />
+                   </motion.div>
+                   <h3 className="text-3xl font-serif italic text-white">{t('orderConfirmed')}</h3>
+                   <p className="text-gold-light/30 font-serif italic text-lg">{t('orderConfirmedDesc')}</p>
+                </div>
+              ) : cart.length === 0 ? (
+                <div className="flex-1 flex flex-col items-center justify-center text-center py-20 opacity-20">
+                  <ShoppingBag className="w-12 h-12 mb-6 stroke-[0.5]" />
+                  <p className="font-serif italic text-lg tracking-widest uppercase">{t('emptyBag')}</p>
+                </div>
+              ) : (
+                <>
+                  <div className="flex-1 overflow-y-auto no-scrollbar space-y-10 pr-4">
+                    {cart.map((item) => (
+                      <div key={item.id} className="group grid grid-cols-[1fr,auto] gap-6 items-start pb-8 border-b border-white/[0.03]">
+                        <div className="space-y-2">
+                           <span className="text-[8px] tracking-[0.3em] text-gold-muted/40 uppercase">{item.restoName}</span>
+                           <h4 className="text-lg font-serif text-white group-hover:text-gold-muted transition-colors">{item.name}</h4>
+                           <div className="flex items-center gap-6 mt-4">
+                              <div className="flex items-center border border-white/10 rounded-full px-3 py-1 gap-4">
+                                <button onClick={() => updateQuantity(item.id, -1)} className="text-gold-muted/40 hover:text-gold-muted transition-colors"><Minus className="w-3 h-3" /></button>
+                                <span className="text-[10px] text-white w-4 text-center font-mono">{item.quantity}</span>
+                                <button onClick={() => updateQuantity(item.id, 1)} className="text-gold-muted/40 hover:text-gold-muted transition-colors"><Plus className="w-3 h-3" /></button>
+                              </div>
+                              <span className="text-[10px] text-gold-muted/40 font-mono tracking-tighter">{item.price}</span>
+                           </div>
+                        </div>
+                        <button onClick={() => removeFromCart(item.id)} className="p-2 text-white/20 hover:text-red-900/60 transition-colors">
+                          <Trash2 className="w-4 h-4 stroke-1" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-16 space-y-8 border-t border-white/5 pt-12">
+                    <div className="flex justify-between items-end pb-8">
+                       <span className="text-[10px] tracking-[0.4em] text-gold-muted/40 uppercase font-sans">{t('subtotal')}</span>
+                       <span className="text-4xl font-serif text-white italic tracking-tighter">${cartTotal}</span>
+                    </div>
+
+                    <form onSubmit={handleCheckout} className="space-y-6">
+                       <div className="space-y-3">
+                          <label className="text-[9px] tracking-[0.3em] text-gold-muted/40 uppercase font-sans block">{t('deliveryLocation')}</label>
+                          <input 
+                            required
+                            type="text"
+                            value={checkoutLocation}
+                            onChange={(e) => setCheckoutLocation(e.target.value)}
+                            placeholder="e.g. Suly Heights, Tower A, Flat 402"
+                            className={`w-full bg-transparent border border-white/10 p-5 font-sans text-xs tracking-widest text-white placeholder:text-white/10 focus:outline-none focus:border-gold-muted transition-colors ${LANGUAGES[lang].dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                          />
+                       </div>
+                       <div className="space-y-3">
+                          <label className="text-[9px] tracking-[0.3em] text-gold-muted/40 uppercase font-sans block">{t('phoneNumber')}</label>
+                          <input 
+                            required
+                            type="tel"
+                            value={checkoutPhone}
+                            onChange={(e) => setCheckoutPhone(e.target.value)}
+                            placeholder="+964 7XX XXX XXXX"
+                            className={`w-full bg-transparent border border-white/10 p-5 font-sans text-xs tracking-widest text-white placeholder:text-white/10 focus:outline-none focus:border-gold-muted transition-colors ${LANGUAGES[lang].dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                          />
+                       </div>
+                       <button 
+                         disabled={isSubmitting}
+                         type="submit"
+                         className="luxury-button w-full !py-6 group"
+                       >
+                         {isSubmitting ? t('sending') : t('checkout')}
+                         <ArrowRight className={`w-4 h-4 ml-4 transition-transform group-hover:translate-x-1 ${LANGUAGES[lang].dir === 'rtl' ? 'rotate-180 mr-4 ml-0 group-hover:-translate-x-1' : ''}`} />
+                       </button>
+                    </form>
+                  </div>
+                </>
+              )}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
