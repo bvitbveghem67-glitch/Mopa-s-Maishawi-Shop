@@ -38,7 +38,7 @@ CATEGORIES = [
  
   { id: 'fusion', name: { en: 'NEO FUSION', ku: 'فیوژنی نوێ', ar: 'فيوجن حديث' }, icon: Search },
  
-  { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' }, icon: Zap },
+  { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' }, icon: Flame },
  
   { id: 'burgers', name: { en: 'GRILL MASTERS', ku: 'بەرگر و برژاو', ar: 'سيد الشواء' }, icon: Disc },
  
