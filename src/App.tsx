@@ -28,19 +28,14 @@ type CartItem = {
 };
 
 const CATEGORIES = [
-  // --- High-End / Fine Dining ---
   { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }, icon: Flame },
   { id: 'sushi', name: { en: 'KYOTO RAW', ku: 'سوشی کیۆتۆ', ar: 'سوشي كيوتو' }, icon: Utensils },
   { id: 'french', name: { en: 'HAUTE CUISINE', ku: 'چێشتی فەڕەنسی', ar: 'مطبخ فرنسي راقٍ' }, icon: Star },
   { id: 'fusion', name: { en: 'NEO FUSION', ku: 'فیوژنی نوێ', ar: 'فيوجن حديث' }, icon: Search },
-
-  // --- Fast Food & Local Favorites (The Scalable Core) ---
   { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' }, icon: Zap },
   { id: 'burgers', name: { en: 'GRILL MASTERS', ku: 'بەرگر و برژاو', ar: 'سيد الشواء' }, icon: Disc },
   { id: 'pizza', name: { en: 'ARTISAN PIZZA', ku: 'پیتزای دەستکرد', ar: 'بيتزا حرفية' }, icon: Slice },
   { id: 'oriental', name: { en: 'LEVANT TRADITION', ku: 'خواردنی ڕۆژهەڵاتی', ar: 'أصالة الشرق' }, icon: Coffee },
-  
-  // --- Trendy / New Generation ---
   { id: 'desserts', name: { en: 'SUGAR LAB', ku: 'شیرینی و کیک', ar: 'مختبر الحلويات' }, icon: Gift },
   { id: 'healthy', name: { en: 'VITALITY BOWLS', ku: 'خواردنی تەندروست', ar: 'وجبات صحية' }, icon: ShieldCheck }
 ];
