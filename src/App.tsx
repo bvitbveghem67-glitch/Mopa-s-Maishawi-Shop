@@ -140,7 +140,7 @@ export default function App() {
       {/* Elegant Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 md:px-16 py-10 backdrop-blur-md bg-charcoal/40 border-b border-white/5">
         <div className="flex flex-col">
-          <span className="font-serif text-3xl font-light tracking-[0.1em] text-gold-muted leading-tight uppercase">MAISHAWI</span>
+          <span className="font-serif text-3xl font-light tracking-[0.1em] text-gold-muted leading-tight uppercase">MOPA'S MAISHAWI</span>
           <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-gold-muted/60 -mt-1">Elite Logistics</span>
         </div>
 
@@ -152,7 +152,7 @@ export default function App() {
 
         <div className="flex items-center gap-8">
           <div className="hidden md:flex items-center gap-2 text-gold-muted/40 font-sans text-[10px] tracking-widest uppercase">
-            <MapPin className="w-3 h-3" /> SULAYMANIYAH GRID KRI
+            <MapPin className="w-3 h-3" /> SULAYMANIYAH, IRAQ
           </div>
           <button className="relative p-2 text-gold-muted hover:scale-110 transition-transform cursor-pointer">
             <ShoppingBag className="w-5 h-5 stroke-1" />
@@ -173,7 +173,7 @@ export default function App() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="text-gold-muted font-sans text-[10px] tracking-[0.8em] uppercase mb-12 block opacity-60">The Apex of Cuisine</span>
-            <h1 className="text-8xl md:text-[12rem] font-serif font-light italic leading-none mb-4 tracking-tighter text-white gold-glow">
+            <h1 className="text-8xl md:text-[12rem] font-serif font-light italic leading-none mb-4 tracking-tighter text-white gold-glow"> MOPA'S
               Maishawi
             </h1>
             <div className="fine-line w-48 mx-auto mb-10 opacity-30" />
