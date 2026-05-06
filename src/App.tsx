@@ -29,7 +29,7 @@ type CartItem = {
 
 
 
-CATEGORIES = [
+const CATEGORIES = [
   { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }  },
  
   { id: 'sushi', name: { en: 'KYOTO RAW', ku: 'سوشی کیۆتۆ', ar: 'سوشي كيوتو' } },
