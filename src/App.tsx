@@ -5,6 +5,12 @@ import {
   Star, 
   Search,
   Filter,
+  Zap, 
+  Disc, 
+  Slice, 
+  Coffee, 
+  Gift, 
+  ShieldCheck,
   ShoppingBag,
   Menu as MenuIcon,
   X,
@@ -27,29 +33,24 @@ type CartItem = {
   restoName: string;
 };
 
-
-
 const CATEGORIES = [
-  { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }  },
- 
-  { id: 'sushi', name: { en: 'KYOTO RAW', ku: 'سوشی کیۆتۆ', ar: 'سوشي كيوتو' } },
- 
-  { id: 'french', name: { en: 'HAUTE CUISINE', ku: 'چێشتی فەڕەنسی', ar: 'مطبخ فرنسي راقٍ' } },
- 
-  { id: 'fusion', name: { en: 'NEO FUSION', ku: 'فیوژنی نوێ', ar: 'فيوجن حديث' } },
- 
-  { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' } },
- 
-  { id: 'burgers', name: { en: 'GRILL MASTERS', ku: 'بەرگر و برژاو', ar: 'سيد الشواء' } },
- 
-  { id: 'pizza', name: { en: 'ARTISAN PIZZA', ku: 'پیتزای دەستکرد', ar: 'بيتزا حرفية' } },
- 
-  { id: 'oriental', name: { en: 'LEVANT TRADITION', ku: 'خواردنی ڕۆژهەڵاتی', ar: 'أصالة الشرق' } },
- 
-  { id: 'desserts', name: { en: 'SUGAR LAB', ku: 'شیرینی و کیک', ar: 'مختبر الحلويات' } },
- 
-  { id: 'healthy', name: { en: 'VITALITY BOWLS', ku: 'خواردنی تەندروست', ar: 'وجبات صحية' } }
+  // --- High-End / Fine Dining ---
+  { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }, icon: Flame },
+  { id: 'sushi', name: { en: 'KYOTO RAW', ku: 'سوشی کیۆتۆ', ar: 'سوشي كيوتو' }, icon: Utensils },
+  { id: 'french', name: { en: 'HAUTE CUISINE', ku: 'چێشتی فەڕەنسی', ar: 'مطبخ فرنسي راقٍ' }, icon: Star },
+  { id: 'fusion', name: { en: 'NEO FUSION', ku: 'فیوژنی نوێ', ar: 'فيوجن حديث' }, icon: Search },
+
+  // --- Fast Food & Local Favorites (The Scalable Core) ---
+  { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' }, icon: Zap },
+  { id: 'burgers', name: { en: 'GRILL MASTERS', ku: 'بەرگر و برژاو', ar: 'سيد الشواء' }, icon: Disc },
+  { id: 'pizza', name: { en: 'ARTISAN PIZZA', ku: 'پیتزای دەستکرد', ar: 'بيتزا حرفية' }, icon: Slice },
+  { id: 'oriental', name: { en: 'LEVANT TRADITION', ku: 'خواردنی ڕۆژهەڵاتی', ar: 'أصالة الشرق' }, icon: Coffee },
+  
+  // --- Trendy / New Generation ---
+  { id: 'desserts', name: { en: 'SUGAR LAB', ku: 'شیرینی و کیک', ar: 'مختبر الحلويات' }, icon: Gift },
+  { id: 'healthy', name: { en: 'VITALITY BOWLS', ku: 'خواردنی تەندروست', ar: 'وجبات صحية' }, icon: ShieldCheck }
 ];
+
 const UI_TEXT: Record<string, any> = {
   en: {
     brand: "MOPA'S MAISHAWI",
@@ -209,15 +210,116 @@ const REVIEWS: Record<string, any[]> = {
 const RESTAURANTS = [
   {
     id: 1,
+    name: { en: "MOPA'S MAISHAWI", ku: "مۆپا مەیشاوی", ar: "موبا ميشاوي" },
+    location: { en: "Suly Park District", ku: "گەڕەکی پارکی سلێمانی", ar: "منطقة بارك السليمانية" },
+    category: 'steak',
+    rating: 4.9,
+    price: '$65 - $180',
+    time: { en: '25-35 MIN', ku: '٢٥-٣٥ خولەک', ar: '٢٥-٣٥ دقيقة' },
+    image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=2070&auto=format&fit=crop',
+    tagline: { en: 'Ancestral Charcoal Reserve', ku: 'کۆگای خەڵووزی باوان', ar: 'احتياطي الفحم الموروث' },
+    sig: { en: 'KRI Spiced Ribeye', ku: 'ڕیبی کەی ئاڕ ئای بە بەهارات', ar: 'ريب آي متبل' },
+    menu: [
+      { category: { en: 'ELITE SANDWICHES', ku: 'سەندوویچی نایاب', ar: 'ساندوتشات النخبة' }, items: [
+        { name: { en: 'Egg Protocol Sandwich', ku: 'سەندوویچی هێلکە', ar: 'ساندوتش بيض' }, desc: { en: 'Boiled or fried with Salting & Black Pepper. Multiple styles available.', ku: 'بە هێلکەی کوڵاو یان برژاو بە خواستی خۆت.', ar: 'مسلوق أو مقلي مع الملح والفلفل الأسود.' }, price: '$1.00' },
+        { name: { en: 'Falafel Archive', ku: 'فەلافەڵی نایاب', ar: 'فلافل النخبة' }, desc: { en: 'Iraqi or Egyptian heritage recipe. Mix of beans, garlic, and lentils.', ku: 'فەلافەڵی شێوازی عێراقی یان میسری.', ar: 'وصفة عراقية أو مصرية عريقة.' }, price: '$0.50' },
+        { name: { en: 'Special Agashe', ku: 'ئاگاشەی تایبەت', ar: 'أغاشي خاص' }, desc: { en: 'Meat or chicken with tahini sauce and secret spices cooked on coal.', ku: 'گۆشت یان مریشک بە سۆسی تاهینی و تێکەڵەی نهێنی.', ar: 'لحم أو دجاج بصلصة الطحينة والبهارات السرية.' }, price: '$4.00' },
+        { name: { en: 'Kebab Plinth', ku: 'کەبابی نایاب', ar: 'كباب النخبة' }, desc: { en: 'Traditional Turkish style kebab sandwich with peppers and carrots.', ku: 'کەبابی نایاب بە شێوازی تورکی.', ar: 'ساندوتش كباب تركي تقليدي.' }, price: '$2.50' },
+        { name: { en: 'Elite Shawarma', ku: 'شاوەرمەی نایاب', ar: 'شاورما النخبة' }, desc: { en: 'Iraq-Global hybrid with garlic sauce and roasted vegetables.', ku: 'شاوەرمەی عێراقی بە سۆسی تایبەت.', ar: 'شاورما هجينة مع صلصة الثوم والخضروات.' }, price: '$2.00' }
+      ]},
+      { category: { en: 'MAISHAWI SELECTIONS', ku: 'هەڵبژاردەکانی مەیشاوی', ar: 'مختارات ميشاوي' }, items: [
+        { name: { en: 'KRI Spiced Ribeye', ku: 'ڕیبی کەی ئاڕ ئای بە بەهارات', ar: 'ريب آي متبل' }, desc: { en: '45-day dry-aged, seared over oak charcoal.', ku: '٤٥ ڕۆژ وشککراوەتەوە، لەسەر خەڵووزی داربەڕوو برژێنراوە.', ar: 'معتق لمدة ٤٥ يومًا، مشوي على فحم البلوط.' }, price: '$65' },
+        { name: { en: 'The Grand Tomahawk', ku: 'تۆماهاوکی مەزن', ar: 'توماهوك الكبير' }, desc: { en: '32oz reserve cut, gold-flecked marrow butter.', ku: 'بڕینێکی تایبەتی ٣٢ ئۆنسی، کەرەی مۆخی زێڕین.', ar: 'قطع احتياطي ٣٢ أونصة، زبدة النخاع المرصعة بالذهب.' }, price: '$145' },
+        { name: { en: 'Oven Oven Baked Fish', ku: 'ماسی فڕن', ar: 'سمك مشوي بالفرن' }, desc: { en: '1kg reserve catch, baked with fresh grid vegetables.', ku: 'ماسی فڕن بە سەوزەواتی نایاب.', ar: 'سمك مشوي مع خضروات طازجة.' }, price: '$12.00' }
+      ]},
+      { category: { en: 'TRADITIONAL STEWS & SOUPS', ku: 'شلەمەنی و شۆربا', ar: 'يدم وشوربات' }, items: [
+        { name: { en: 'The Stew Matrix (Tabeekh)', ku: 'شلەمەنی تابیخ', ar: 'الماتريكس التقليدي' }, desc: { en: 'Choice of Fasulia, Potato, Bamya, Zucchini or Red Pumpkin.', ku: 'هەڵبژاردەی فاسۆڵیا، پەتاتە، بامیە، یان کولەکە.', ar: 'خيار الفاصوليا، البطاطس، البامية، أو اليقطين.' }, price: '$3.50' },
+        { name: { en: 'Reserve Soups', ku: 'شۆربای تایبەت', ar: 'شوربات احتياطية' }, desc: { en: 'Lentil, Vegetable, or Meat Bone Broth.', ku: 'شۆربای نیسک یان سەوزەوات.', ar: 'شوربة عدس، خضروات، أو مرق لحم.' }, price: '$1.50' }
+      ]},
+      { category: { en: 'SWEET ARCHIVE', ku: 'ئەرشیفی شیرینی', ar: 'أرشيف الحلويات' }, items: [
+        { name: { en: 'Sugar Grid Pancakes', ku: 'پانکەیکی شیرین', ar: 'بانكيك السكر' }, desc: { en: '9 pieces topped with honey, jam, or Nutella.', ku: '٩ پارچە پانکەیک بە هەنگوین یان نۆتێلا.', ar: '٩ قطع مع العسل أو المربى أو النوتيلا.' }, price: '$4.00' },
+        { name: { en: 'Elite Cinabon', ku: 'سینابۆنی نایاب', ar: 'سينابون النخبة' }, desc: { en: '24 pcs archive order with milky creamer glaze.', ku: '٢٤ پارچە سینابۆن بە کرێمی شیر.', ar: '٢٤ قطعة سينابون مع كريمة الحليب.' }, price: '$8.00' },
+        { name: { en: 'Chocolate Cake Plinths', ku: 'کێکی شوکولاتە', ar: 'منصات الشوكولاتة' }, desc: { en: 'Rich archive cake with chocolate lava sauce.', ku: 'کێک بە سۆسی شوکولاتەی زۆر.', ar: 'كيك غني مع صلصة الشوكولاتة.' }, price: '$6.00' }
+      ]}
+    ]
+  },
+  {
+    id: 2,
+    name: { en: "AZMAR PEAK", ku: "لووتکەی ئەزمەڕ", ar: "قمة أزمر" },
+    location: { en: "Azmar Heights", ku: "بەرزاییەکانی ئەزمەڕ", ar: "مرتفعات أزمر" },
+    category: 'french',
+    rating: 4.8,
+    price: '$45 - $120',
+    time: { en: '40-50 MIN', ku: '٤٠-٥٠ خولەک', ar: '٤٠-٥٠ دقيقة' },
+    image: 'https://images.unsplash.com/photo-1550966841-3ee3ad15f0d5?q=80&w=2070&auto=format&fit=crop',
+    tagline: { en: 'Crest-Side Fine Dining', ku: 'نانخوارنی نایاب لە لوتکە', ar: 'عشاء فاخر على منحدر الجبل' },
+    sig: { en: 'Lamb Shank Confit', ku: 'کۆنفێتی قاچی بەرخ', ar: 'موزات الغنم المحمرة' },
+    menu: [
+      { category: { en: 'HORS D\'OEUVRES', ku: 'کەمەخۆراکەکان', ar: 'المشهیات' }, items: [
+        { name: { en: 'Escargot de Azmar', ku: 'ئێسکارگۆتی ئەزمەڕ', ar: 'حلزون أزمر' }, desc: { en: 'Garlic butter, puff pastry, mountain herbs.', ku: 'کەرەی سیر، هەویری پف، گیاکێوییەکانی شاخ.', ar: 'زبدة الثوم، باستري، أعشاب جبلية.' }, price: '$24' },
+        { name: { en: 'Foie Gras Torchon', ku: 'فوا گرا تۆرچۆن', ar: 'فوا غرا تورشون' }, desc: { en: 'Fig compote, toasted brioche.', ku: 'کۆمپۆتی هەنجیر، بریۆشی برژێنراو.', ar: 'كومبوت التين، بريوش محمص.' }, price: '$32' }
+      ]},
+      { category: { en: 'PLATS PRINCIPAUX', ku: 'خواردنە سەرەکییەکان', ar: 'الأطباق الرئيسية' }, items: [
+        { name: { en: 'Lamb Shank Confit', ku: 'کۆنفێتی قاچی بەرخ', ar: 'موزات الغنم المحمرة' }, desc: { en: 'Slow-cooked for 12 hours, red wine reduction.', ku: '١٢ خولەک بە هێواشی کوڵاوە.', ar: 'مطبوخ ببطء لمدة ١٢ ساعة.' }, price: '$48' },
+        { name: { en: 'Duck à l\'Orange', ku: 'مراوی بە پرتەقاڵ', ar: 'بط بالبرتقال' }, desc: { en: 'Zesty citrus glaze, parsnip purée.', ku: 'گەشەی مزرەمەنی، پیورێی پاشنیپ.', ar: 'طبقة حمضية، بيوريه الجزر الأبيض.' }, price: '$52' }
+      ]}
+    ]
+  },
+  {
+    id: 3,
+    name: { en: "SAWRA GRID", ku: "تۆڕی سەورە", ar: "شبكة ثورة" },
+    location: { en: "Salim Street", ku: "شەقامی سەلیم", ar: "شارع سالم" },
+    category: 'sushi',
+    rating: 5.0,
+    price: '$80 - $250',
+    time: { en: '20-30 MIN', ku: '٢٠-٣٠ خولەک', ar: '٢٠-٣٠ دقيقة' },
+    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070&auto=format&fit=crop',
+    tagline: { en: 'Imported Raw Reserve', ku: 'کۆگای خاوە هاوردەکراوەکان', ar: 'احتياطي المواد الخام المستوردة' },
+    sig: { en: 'Bluefin O-Toro', ku: 'بلوفین ئۆ-تۆرۆ', ar: 'بلوفين أو تورو' },
+    menu: [
+      { category: { en: 'ZEN STARTERS', ku: 'دەستپێکە ئارامەکان', ar: 'مقبلات زين' }, items: [
+        { name: { en: 'Tuna Tataki', ku: 'تونا تاتاکی', ar: 'تونا تاتاكي' }, desc: { en: 'Seared bluefin, ponzu, crispy garlic.', ku: 'بلوفینی برژێنراو، پۆنزو، سیری کریسپی.', ar: 'بلوفين محمر، بونزو، ثوم مقرمش.' }, price: '$28' },
+        { name: { en: 'Golden Enoki', ku: 'گۆڵدن ئێنۆکی', ar: 'الفطر الذهبي' }, desc: { en: 'Tempura mushrooms, truffle aioli.', ku: 'قارچکی تەمپورا، ترۆفڵ ئایۆلی.', ar: 'فطر تيمبورا، أيولي الكمأة.' }, price: '$16' }
+      ]},
+      { category: { en: 'THE RESERVE BOX', ku: 'سندوقی تایبەت', ar: 'صندوق الاحتياط' }, items: [
+        { name: { en: 'O-Toro Flight', ku: 'گەشتی ئۆ-تۆرۆ', ar: 'فلايت أو تورو' }, desc: { en: 'Three grades of bluefin fatty tuna.', ku: 'سێ پلەی ماسی تونا.', ar: 'ثلاث درجات من تونا البلوفين الدهنية.' }, price: '$85' },
+        { name: { en: 'Imperial Omakase', ku: 'ئۆماکاسی شاهانە', ar: 'أوماكاسي إمبراطوري' }, desc: { en: '12-piece chef\'s selection of the day\'s best catch.', ku: '١٢ پارچە لە باشترین هەڵبژاردەی شێف بۆ ئەمڕۆ.', ar: '١٢ قطعة من اختيار الشيف لأفضل صيد اليوم.' }, price: '$120' }
+      ]}
+    ]
+  },
+  {
+    id: 4,
+    name: { en: "GOIZHA CELLAR", ku: "سێڵەری گۆیژە", ar: "قبو كويجة" },
+    location: { en: "Sarchinar Road", ku: "شەقامی سەرچنار", ar: "طريق سرجنار" },
+    category: 'fusion',
+    rating: 4.7,
+    price: '$35 - $90',
+    time: { en: '30-40 MIN', ku: '٣٠-٤٠ خولەک', ar: '٣٠-٤٠ دقيقة' },
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2074&auto=format&fit=crop',
+    tagline: { en: 'Modern Kurdish Fusion', ku: 'فیوژنی کوردی سەردەمیانە', ar: 'فيوجن كردي حديث' },
+    sig: { en: 'Wagyu Bone Marrow', ku: 'مۆخی واگیۆ', ar: 'نخاع عظم واغيو' },
+    menu: [
+      { category: { en: 'SMALL PLINTHS', ku: 'پلینتە بچووکەکان', ar: 'منصات صغيرة' }, items: [
+        { name: { en: 'Kurdish Arancini', ku: 'ئارانچینی کوردی', ar: 'أرانتشيني كردي' }, desc: { en: 'Saffron rice, braised lamb, spiced yogurt.', ku: 'برنجی سەفران، بەرخی برژێنراو، ماستی بەهاراتی پڕ.', ar: 'أرز بالزعفران، لحم ضأن مطهو ببطء، زبادي متبل.' }, price: '$14' },
+        { name: { en: 'Goizha Hummus', ku: 'حوموسی گۆیژە', ar: 'حمص كويجة' }, desc: { en: 'Wagyu fat infusion, toasted pine nuts.', ku: 'تێکەڵەی چەوری واگیۆ، سنەوبەری برژێنراو.', ar: 'منقوع دهن الواغيو، صنوبر محمص.' }, price: '$12' }
+      ]},
+      { category: { en: 'SIGNATURES', ku: 'نیشانەکان', ar: 'التواقيع' }, items: [
+        { name: { en: 'Wagyu Bone Marrow', ku: 'مۆخی واگیۆ', ar: 'نخاع عظم واغيو' }, desc: { en: 'Herb crust, lemon zest, mountain salt.', ku: 'تێکەڵەی گیا، توێکڵی لیمۆ، خوێی شاخ.', ar: 'قشرة الأعشاب، قشر الليمون، ملح جبلي.' }, price: '$36' },
+        { name: { en: 'Neo-Dolma', ku: 'نیۆ-دۆڵمە', ar: 'نيو دولمة' }, desc: { en: 'Deconstructed traditional flavors, modern plating.', ku: 'تامە ڕەسەنەکان بە شێوازێکی زانستی و نوێ.', ar: 'نكهات تقليدية مفككة، تقديم عصري.' }, price: '$28' }
+      ]}
+    ]
+  },
+  {
+    id: 5,
     name: { en: "KFC", ku: "کەی ئێف سی", ar: "كي إف سي" },
     location: { en: "Salim Street", ku: "شەقامی سەلیم", ar: "شارع سالم" },
-    category: 'Fried Chicken',
+    category: 'fried_chicken',
     rating: 4.5,
     price: '3,250 - 81,000 IQD',
     time: { en: '25-40 MIN', ku: '٢٥-٤٠ خولەک', ar: '٢٥-٤٠ دقيقة' },
     image: 'https://1000logos.net/wp-content/uploads/2017/03/Kfc_logo.png', 
     tagline: { en: "Finger Lickin' Good", ku: "پەنجەکانتی لەگەڵ دەخۆیت", ar: "خلطة سرية، طعم رائع" },
-    sig: { en: 'Mighty Bucket', ku: 'مایتی سەتڵ', ar: 'مايتي بوكيت' },
+    sig: { en: 'Mighty Bucket', ku: 'مایتی سەتڵ', ar: 'مایتی بوكيت' },
     menu: [
       { 
         category: { en: 'INDIVIDUAL MEALS', ku: 'ژەمە تاکەکەسییەکان', ar: 'وجبات فردية' }, 
@@ -229,20 +331,20 @@ const RESTAURANTS = [
         ]
       },
       { 
-        category: { en: 'BUCKETS', ku: 'سەتڵەکان', ar: 'البوكت' }, 
+        category: { en: 'BUCKETS', ku: 'سەتڵەکان', ar: 'البوکت' }, 
         items: [
           { name: { en: 'Super Bucket (9 Pcs)', ku: 'سەتڵێ سوپەر ٩ پارچەیی', ar: 'سوبر بوكيت ٩ قطع' }, desc: { en: '9 chicken pieces, 3 buns, family fries, coleslaw, and 1.75L drink.', ku: '٩ پارچە مریشک، ٣ سەموون، پەتاتە، زەڵاتە، و خواردنەوە.', ar: '٩ قطع دجاج، ٣ خبز، بطاطس عائلية، كولسلو، ومشروب.' }, price: '36,000 IQD' },
-          { name: { en: 'Mighty Bucket (15 Pcs)', ku: 'سەتڵێ مایتی ١٥ پارچەیی', ar: 'مايتي بوكيت ١٥ قطعة' }, desc: { en: '15 chicken pieces, 5 strips, 5 buns, family fries, coleslaw, and 1.75L drink.', ku: '١٥ پارچە مریشک، ٥ سترێپس، ٥ سەموون، پەتاتە، و خواردنەوە.', ar: '١٥ قطعة دجاج، ٥ ستربس، ٥ خبز، بطاطس عائلية، ومشروب.' }, price: '61,000 IQD' },
+          { name: { en: 'Mighty Bucket (15 Pcs)', ku: 'سەتڵێ مایتی ١٥ پارچەیی', ar: 'مایتی بوكيت ١٥ قطعة' }, desc: { en: '15 chicken pieces, 5 strips, 5 buns, family fries, coleslaw, and 1.75L drink.', ku: '١٥ پارچە مریشک، ٥ سترێپس، ٥ سەموون، پەتاتە، و خواردنەوە.', ar: '١٥ قطعة دجاج، ٥ ستربس، ٥ خبز، بطاطس عائلية، ومشروب.' }, price: '61,000 IQD' },
           { name: { en: 'Saver Bucket (21 Pieces)', ku: 'سەتڵێ سەیڤەر ٢١ پارچەیی', ar: 'سيفر بوكيت ٢١ قطعة' }, desc: { en: '21 pieces of chicken and 7 buns.', ku: '٢١ پارچە مریشک و ٧ سەموون.', ar: '٢١ قطعة دجاج و ٧ خبز.' }, price: '55,000 IQD' }
         ]
       }
     ]
   },
   {
-    id: 2,
+    id: 6,
     name: { en: "HARDEE'S", ku: "هاردیز", ar: "هارديز" },
     location: { en: "Majidi Mall", ku: "مەجیدی مۆڵ", ar: "مجيدي مول" },
-    category: 'Burgers',
+    category: 'burgers',
     rating: 4.6,
     price: '9,750 - 52,500 IQD',
     time: { en: '30-45 MIN', ku: '٣٠-٤٥ خولەک', ar: '٣٠-٤٥ دقيقة' },
@@ -268,10 +370,10 @@ const RESTAURANTS = [
     ]
   },
   {
-    id: 3,
+    id: 7,
     name: { en: "BURGER KING", ku: "بەرگر کینگ", ar: "برجر كينج" },
     location: { en: "Bakhtiary", ku: "بەختیاری", ar: "بختياري" },
-    category: 'Burgers',
+    category: 'burgers',
     rating: 4.4,
     price: '10,500 - 45,000 IQD',
     time: { en: '30-45 MIN', ku: '٣٠-٤٥ خولەک', ar: '٣٠-٤٥ دقيقة' },
