@@ -30,25 +30,25 @@ type CartItem = {
 
 
 CATEGORIES = [
-  { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }, icon: Flame },
+  { id: 'steak', name: { en: 'RESERVE STEAK', ku: 'ستەیکی تایبەت', ar: 'ستيك احتياطي' }  },
  
-  { id: 'sushi', name: { en: 'KYOTO RAW', ku: 'سوشی کیۆتۆ', ar: 'سوشي كيوتو' }, icon: Utensils },
+  { id: 'sushi', name: { en: 'KYOTO RAW', ku: 'سوشی کیۆتۆ', ar: 'سوشي كيوتو' } },
  
-  { id: 'french', name: { en: 'HAUTE CUISINE', ku: 'چێشتی فەڕەنسی', ar: 'مطبخ فرنسي راقٍ' }, icon: Star },
+  { id: 'french', name: { en: 'HAUTE CUISINE', ku: 'چێشتی فەڕەنسی', ar: 'مطبخ فرنسي راقٍ' } },
  
-  { id: 'fusion', name: { en: 'NEO FUSION', ku: 'فیوژنی نوێ', ar: 'فيوجن حديث' }, icon: Search },
+  { id: 'fusion', name: { en: 'NEO FUSION', ku: 'فیوژنی نوێ', ar: 'فيوجن حديث' } },
  
-  { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' }, icon: Flame },
+  { id: 'fried_chicken', name: { en: 'CRISPY GOLD', ku: 'مریشکی کریسپی', ar: 'دجاج مقرمش' } },
  
-  { id: 'burgers', name: { en: 'GRILL MASTERS', ku: 'بەرگر و برژاو', ar: 'سيد الشواء' }, icon: Disc },
+  { id: 'burgers', name: { en: 'GRILL MASTERS', ku: 'بەرگر و برژاو', ar: 'سيد الشواء' } },
  
-  { id: 'pizza', name: { en: 'ARTISAN PIZZA', ku: 'پیتزای دەستکرد', ar: 'بيتزا حرفية' }, icon: Slice },
+  { id: 'pizza', name: { en: 'ARTISAN PIZZA', ku: 'پیتزای دەستکرد', ar: 'بيتزا حرفية' } },
  
-  { id: 'oriental', name: { en: 'LEVANT TRADITION', ku: 'خواردنی ڕۆژهەڵاتی', ar: 'أصالة الشرق' }, icon: Coffee },
+  { id: 'oriental', name: { en: 'LEVANT TRADITION', ku: 'خواردنی ڕۆژهەڵاتی', ar: 'أصالة الشرق' } },
  
-  { id: 'desserts', name: { en: 'SUGAR LAB', ku: 'شیرینی و کیک', ar: 'مختبر الحلويات' }, icon: Gift },
+  { id: 'desserts', name: { en: 'SUGAR LAB', ku: 'شیرینی و کیک', ar: 'مختبر الحلويات' } },
  
-  { id: 'healthy', name: { en: 'VITALITY BOWLS', ku: 'خواردنی تەندروست', ar: 'وجبات صحية' }, icon: ShieldCheck }
+  { id: 'healthy', name: { en: 'VITALITY BOWLS', ku: 'خواردنی تەندروست', ar: 'وجبات صحية' } }
 ];
 const UI_TEXT: Record<string, any> = {
   en: {
