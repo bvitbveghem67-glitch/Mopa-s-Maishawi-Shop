@@ -210,7 +210,7 @@ const REVIEWS: Record<string, any[]> = {
 const RESTAURANTS = [
   {
     id: 1,
-    name: { en: "MOPA'S MAISHAWI", ku: "مۆپا مەیشاوی", ar: "موبا ميشاوي" },
+    name: { en: "ON-DEMAND FOODS", ku: "مۆپا مەیشاوی", ar: "موبا ميشاوي" },
     location: { en: "Home Cooked", ku: "گەڕەکی پارکی سلێمانی", ar: "منطقة بارك السليمانية" },
     category: 'steak',
     rating: 4.9,
